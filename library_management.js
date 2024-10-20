@@ -50,3 +50,48 @@ class Section {
         }); 
     }
 }
+
+//Task 3
+class Patron {
+    //Initializes the properties of the Patron class
+    constructor(name) {
+        this.name = name;                  
+        this.borrowedBooks = [];          
+    }
+
+    //Checks to see if a book is available to borrow 
+    borrowBook(book) {
+        if (book.isAvailable) {            
+            this.borrowedBooks.push(book); 
+            book.isAvailable = false;       
+            console.log(`${this.name} borrowed "${book.title}".`);
+        } else {
+            console.log(`Sorry, "${book.title}" is currently borrowed.`);
+        }
+    }
+
+    //Returns a book that was borrowed
+    returnBook(book) {
+        let found = false; 
+
+        const updatedBorrowedBooks = [];
+
+        //Loops through the array of borrowedBooks to find the book
+        for (let i = 0; i < this.borrowedBooks.length; i++) {
+            if (this.borrowedBooks[i] === book) { 
+                found = true; 
+                book.isAvailable = true;            
+                console.log(`${this.name} returned "${book.title}".`);
+            } else {
+                updatedBorrowedBooks.push(this.borrowedBooks[i]);
+            }
+        }
+
+        //Updates the borrowedBooks to the updatedBorrowedBooks
+        this.borrowedBooks = updatedBorrowedBooks;
+     
+        if (!found) {
+            console.log(`Error: "${book.title}" was not borrowed by ${this.name}.`);
+        }
+    }
+}
