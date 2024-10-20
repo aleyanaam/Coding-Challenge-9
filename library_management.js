@@ -31,10 +31,10 @@ class Section {
 
     //Adds a Book object to the books array
     addBook(book) {
-        if (book instanceof Book) {   //Checks to see if the passed object is a Book
-            this.books.push(book);     //Adds the book to the array
+        if (book instanceof Book) {   
+            this.books.push(book);     
         } else {
-            console.error("Invalid book. Please provide a Book object.");
+            console.error("Error. Please provide a book");
         }
     }
 
@@ -66,7 +66,7 @@ class Patron {
             book.isAvailable = false;       
             console.log(`${this.name} borrowed "${book.title}".`);
         } else {
-            console.log(`Sorry, "${book.title}" is currently borrowed.`);
+            console.log(`"${book.title}" is currently unavaible to be borrowed.`);
         }
     }
 
@@ -91,7 +91,7 @@ class Patron {
         this.borrowedBooks = updatedBorrowedBooks;
      
         if (!found) {
-            console.log(`Error: "${book.title}" was not borrowed by ${this.name}.`);
+            console.log(`Error! "${book.title}" was not borrowed `);
         }
     }
 }
