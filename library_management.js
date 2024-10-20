@@ -20,3 +20,33 @@ class Book {
         this._isAvailable = status;
     }
 }
+
+//Task 2
+class Section {
+    //Initializes the properties of the Section class
+    constructor(name) {
+        this.name = name;             
+        this.books = [];              
+    }
+
+    //Adds a Book object to the books array
+    addBook(book) {
+        if (book instanceof Book) {   //Checks to see if the passed object is a Book
+            this.books.push(book);     //Adds the book to the array
+        } else {
+            console.error("Invalid book. Please provide a Book object.");
+        }
+    }
+
+    //Gets the total number of available books in the section
+    getAvailableBooks() {
+        return this.books.filter(book => book.isAvailable).length;
+    }
+
+    //Lists all books in the section with title and availability
+    listBooks() {
+        return this.books.map(book => {
+            return `${book.title} - ${book.isAvailable ? "Available" : "Borrowed"}`;
+        }); 
+    }
+}
