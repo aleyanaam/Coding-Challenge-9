@@ -95,3 +95,22 @@ class Patron {
         }
     }
 }
+
+//Task 4
+class VIPPatron extends Patron {
+    constructor(name) {
+        super(name);                      
+        this.priority = true;            
+    }
+
+    //Overrides borrowBook method
+    borrowBook(book) {
+        if (book.isAvailable) {                
+            this.borrowedBooks[this.borrowedBooks.length] = book; 
+            book.isAvailable = false;           
+            console.log(`VIP Member: ${this.name}  borrowed "${book.title}".`);
+        } else {
+            console.log(`"${book.title}" is currently unavailable to be borrowed.`);
+        }
+    }
+}
